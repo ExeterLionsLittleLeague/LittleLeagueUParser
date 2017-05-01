@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LittleLeagueUParser.Models
 {
     public class ExternalNewsItem
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ExeternalNewsItemID { get; set; }
         public string ExeternalId { get; set; }
         public string BackgroundImageName { get; set; }

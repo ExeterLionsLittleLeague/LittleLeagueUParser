@@ -11,6 +11,13 @@ namespace LittleLeagueUParser.Core
 {
     public class LittleLeagueUContent
     {
+        private readonly LittleLeagueDbContext _context;
+
+        public LittleLeagueUContent(LittleLeagueDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<string> Parse(string uri)
         {
             // Create Posting collection
@@ -31,20 +38,26 @@ namespace LittleLeagueUParser.Core
             }
 
             /// If successful, purge data and prepare to add new posts
-            var news = new List<ExternalNewsItem>();
             foreach (var ipost in posts)
             {
+                var newsItem = new ExternalNewsItem();
+                newsItem.Audience = ipost.User_Type;
+                newsItem.BackgroundImageName = ipost.Cloud_file_Name;
+                newsItem.Body = ipost.Body;
+                newsItem.Byline = ipost.Byline;
+                newsItem.ExeternalId = ipost.Content_ID;
+                newsItem.ExternalLink = ipost.Page_Path;
+                newsItem.IsArticle = ipost.Is_Article;
+                newsItem.IsDocument = ipost.Is_Document;
+                newsItem.IsExternalLink = ipost.Is_External_Link;
+                newsItem.IsQuiz = ipost.Is_Quiz;
+                newsItem.IsVideo = ipost.Is_Video;
+                newsItem.PrimaryTag = ipost.Main_Tag;
+                newsItem.Title = ipost.Post_Title;
 
+                _context.ExternalNewsItems.Add(newsItem);
             }
-            //using (var db = new LittleLeagueDbContext())
-            //{
-            //    var blog = new Blog { Url = "http://sample.com" };
-            //    db.Blogs.Add(blog);
-            //    db.SaveChanges();
-
-            //    Console.WriteLine(blog.BlogId + ": " + blog.Url);
-            //}
-
+            _context.SaveChanges();
 
             // Return OK
             return "OK";
