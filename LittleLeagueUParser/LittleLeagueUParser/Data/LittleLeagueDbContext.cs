@@ -13,13 +13,13 @@ namespace LittleLeagueUParser.Data
         {
         }
 
-        public DbSet<ExeternalNewsItem> ExternalNewsItems { get; set; }
+        public DbSet<ExternalNewsItem> ExternalNewsItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var tablePrefix = "LittleLeague_";
 
-            modelBuilder.Entity<ExeternalNewsItem>().ToTable(tablePrefix + "ExeternalNewsItem");
+            modelBuilder.Entity<ExternalNewsItem>().ToTable(tablePrefix + "ExternalNewsItem");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LittleLeagueUParser.Models
 {
-    public class ExeternalNewsItem
+    public class ExternalNewsItem
     {
         public int ExeternalNewsItemID { get; set; }
         public string ExeternalId { get; set; }

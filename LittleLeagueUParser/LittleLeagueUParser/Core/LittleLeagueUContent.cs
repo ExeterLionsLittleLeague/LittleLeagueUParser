@@ -1,4 +1,5 @@
-﻿using LittleLeagueUParser.Models;
+﻿using LittleLeagueUParser.Data;
+using LittleLeagueUParser.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,19 @@ namespace LittleLeagueUParser.Core
             }
 
             /// If successful, purge data and prepare to add new posts
+            var news = new List<ExternalNewsItem>();
+            foreach (var ipost in posts)
+            {
+
+            }
+            //using (var db = new LittleLeagueDbContext())
+            //{
+            //    var blog = new Blog { Url = "http://sample.com" };
+            //    db.Blogs.Add(blog);
+            //    db.SaveChanges();
+
+            //    Console.WriteLine(blog.BlogId + ": " + blog.Url);
+            //}
 
 
             // Return OK
