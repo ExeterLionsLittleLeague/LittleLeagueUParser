@@ -22,7 +22,7 @@ namespace LittleLeagueUParser.Models
         public bool Is_Document { get; set; }
         public bool Is_External_Link { get; set; }
         public bool Is_Video { get; set; }
-
+        public DateTime DateOfPost { get; set; }
         //TODO: Location, Tags
     }
 }
