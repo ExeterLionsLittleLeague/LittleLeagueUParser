@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace LittleLeagueUParser.Core
@@ -12,6 +13,7 @@ namespace LittleLeagueUParser.Core
     public class LittleLeagueUContent
     {
         private readonly LittleLeagueDbContext _context;
+        private const string lluri = "http://www.littleleagueu.org";
 
         public LittleLeagueUContent(LittleLeagueDbContext context)
         {
@@ -54,6 +56,12 @@ namespace LittleLeagueUParser.Core
                 newsItem.IsVideo = ipost.Is_Video;
                 newsItem.PrimaryTag = ipost.Main_Tag;
                 newsItem.Title = ipost.Post_Title;
+
+                var urlParts = newsItem.ExternalLink.Split('/');
+                newsItem.DateOfPost = new DateTime(int.Parse(urlParts[2]), int.Parse(urlParts[3]), int.Parse(urlParts[4]));
+
+                var cleanTitle = Regex.Replace(newsItem.Title.Replace(" ", "_"), @"[^A-Za-z0-9_]+", "");
+                newsItem.Slug = "/" + urlParts[2] + "/" + urlParts[3] + "/" + urlParts[4] + "/" + cleanTitle;
 
                 _context.ExternalNewsItems.Add(newsItem);
             }

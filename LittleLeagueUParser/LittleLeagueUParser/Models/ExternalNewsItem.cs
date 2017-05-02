@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LittleLeagueUParser.Models
 {
     public class ExternalNewsItem
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ExeternalNewsItemID { get; set; }
         public string ExeternalId { get; set; }
@@ -20,6 +22,7 @@ namespace LittleLeagueUParser.Models
         public bool IsDocument { get; set; }
         public bool IsExternalLink { get; set; }
         public bool IsVideo { get; set; }
+        public string Slug { get; set; }
         public DateTime DateOfPost { get; set; }
         public DateTime DateParsed { get; set; }
         public DateTime DateExpired { get; set; }
