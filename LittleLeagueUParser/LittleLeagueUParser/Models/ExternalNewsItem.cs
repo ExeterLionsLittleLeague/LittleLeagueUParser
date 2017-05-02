@@ -11,6 +11,9 @@ namespace LittleLeagueUParser.Models
         public int ExeternalNewsItemID { get; set; }
         public string ExeternalId { get; set; }
         public string BackgroundImageName { get; set; }
+        public byte[] BackgroundImageBanner { get; set; }
+        public byte[] BackgroundImageBlock { get; set; }
+        public string BackgroundImageType { get; set; }
         public string Title { get; set; }
         public string Audience { get; set; }
         public string ExternalLink { get; set; }
